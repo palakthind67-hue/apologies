@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorry Sunali Mam ❤️</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #020609;
+  color: white;
+  font-family: monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+canvas {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+
+.card {
+  width: 90%;
+  max-width: 480px;
+  padding: 30px 20px;
+  text-align: center;
+  background: rgba(0,15,15,0.94);
+  border: 1px solid #00ff99;
+  border-radius: 20px;
+  box-shadow: 0 0 25px #00ff9955;
+  margin: 25px 0;
+}
+
+h1 {
+  color: #ff4d88;
+  text-shadow: 0 0 15px #ff4d88;
+}
+
+.name {
+  color: #00ffae;
+  text-shadow: 0 0 15px #00ffae;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  50% { transform: scale(1.06); }
+}
+
+.heart {
+  font-size: 65px;
+  animation: heartbeat 1s infinite;
+}
+
+@keyframes heartbeat {
+  50% { transform: scale(1.25); }
+}
+
+#typing {
+  min-height: 65px;
+  color: #00ffae;
+  line-height: 1.8;
+}
+
+button {
+  background: transparent;
+  border: 2px solid #ff4d88;
+  color: white;
+  padding: 13px 25px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 0 15px #ff4d88;
+  margin-top: 15px;
+}
+
+button:hover {
+  background: #ff4d88;
+}
+
+#message {
+  display: none;
+  color: #ffb6d0;
+  line-height: 1.8;
+  margin-top: 20px;
+  animation: appear 1.5s ease;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.footer {
+  color: #00ff99;
+  font-size: 12px;
+  margin-top: 25px;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="card">
+
+<h1>404: Happiness Not Found 💔</h1>
+
+<h2 class="name">SORRY SUNALI MAM! ❤️</h2>
+
+<p style="color:#00ff99">
+> Initializing Apology.exe...
+</p>
+
+<p id="typing"></p>
+
+<div class="heart">❤️</div>
+
+<h2 style="color:#00ff99">
+I'm Really Sorry!
+</h2>
+
+<p>
+Dear Sunali Mam,<br>
+This message is a small way
+to express something from my heart.
+I never wanted to hurt you.
+</p>
+
+<button onclick="showMessage()">
+Click Here, Mam 💗
+</button>
+
+<div id="message">
+
+<h2>One Last Thing... 🥺</h2>
+
+<p>
+If I could rewrite the past,
+I would choose my words more carefully.
+I’m genuinely sorry. ❤️ <br>
+I never meant to hurt you or make you feel bad.
+<br> I know that just saying sorry cannot undo everything, but I truly regret my mistake.<br>
+ <b>Please forgive me.<br></b>
+ Sometimes mistakes happen, <u>but my apology comes straight from my heart.</u> 🥺❤️
+
+<br>No excuses.<br> No justification.<br>
+<br>Just a sincere apology.<br>
+
+You deserve kindness, respect
+and appreciation.<br>
+
+I truly hope you can forgive me.<br>
+<b>Waiting for forgiveness🥺❤️. </b>
+</p>
+
+<h2>Sending You Lots of Respect! ❤️</h2>
+
+</div>
+
+<div class="footer">
+SYSTEM STATUS: I really like in respect you
+</div>
+
+</div>
+
+<script>
+
+// Typing animation
+const text =
+"Scanning mistakes... Found! \nGenerating a sincere apology... 100%";
+
+let i = 0;
+
+function typeText() {
+  if (i < text.length) {
+    document.getElementById("typing").innerHTML +=
+      text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
+    i++;
+    setTimeout(typeText, 65);
+  }
+}
+
+typeText();
+
+// Forgiveness button
+function showMessage() {
+  document.getElementById("message").style.display = "block";
+}
+
+// Matrix falling code
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const letters = "01SORRYLOVE0101";
+const fontSize = 14;
+
+let columns = Math.floor(canvas.width / fontSize);
+let drops = Array(columns).fill(1);
+
+function drawMatrix() {
+  ctx.fillStyle = "rgba(0,0,0,0.08)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "#00ff99";
+  ctx.font = fontSize + "px monospace";
+
+  for (let j = 0; j < drops.length; j++) {
+    const letter =
+      letters[Math.floor(Math.random() * letters.length)];
+
+    ctx.fillText(letter, j * fontSize, drops[j] * fontSize);
+
+    if (
+      drops[j] * fontSize > canvas.height &&
+      Math.random() > 0.975
+    ) {
+      drops[j] = 0;
+    }
+
+    drops[j]++;
+  }
+}
+
+setInterval(drawMatrix, 45);
+
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  columns = Math.floor(canvas.width / fontSize);
+  drops = Array(columns).fill(1);
+});
+
+</script>
+
+</body>
+</html>
